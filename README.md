@@ -53,28 +53,14 @@ Make sure to donwload the flow. The flow is called 'BiomeLightsFlow'.
 
 ### 🧠 How It Works
 
-    The server sends a message like:
-
-    The nearest minecraft:crimson_forest is at [123, 64, 789] (422 blocks away).
-
-    Node-RED parses the biome name, distance, and attaches the dimension (nether/overworld/end).
-
-    The dashboard shows:
-
-        Biome name (e.g. crimson forest)
-
-        Distance (422 blocks)
-
-        Last scanned time
-
-    If the dimension changes, all prior biome data is cleared to avoid stale readings.
-
-    LED strip updates based on the closest biome with unique effects and colors.
+The server sends a message like:
+The nearest minecraft:crimson_forest is at [123, 64, 789] (422 blocks away).
+Node-RED parses the biome name, distance, and attaches the dimension (nether/overworld/end).
+The dashboard shows:
+  - Biome name (e.g. crimson forest)
+  - Distance (422 blocks)
+  - Last scanned time
+LED strip updates based on the closest biome with unique effects and colors.
 
 ## 🎨 Example Biome Colors
-**Biome**	        **LED Color**
-warped_forest	    #00ffff	
-crimson_forest	  #ff0033	
-nether_wastes	    #ff6600	
-basalt_deltas	    #999999	
-soul_sand_valley	#c9b79c	
+Forest is green, desert is yellow, ocean is blue, and so on.
