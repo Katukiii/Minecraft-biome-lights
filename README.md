@@ -28,7 +28,7 @@ A Node-RED project that visualizes distances to Minecraft biomes in real-time an
 - Minecraft Java Edition server with **RCON** enabled
 - [Node-RED](https://nodered.org/) installed and running
 - Node-RED dashboard nodes installed
-- Node-RED minecraft nodes installed (see setup instructions for download)
+- Node-RED minecraft nodes installed (see setup instructions for the download command)
 - Optional: LED strip controlled via MQTT
 - Biome scan commands (e.g. `/locate biome`) triggered via Node-RED inject or automation
 
@@ -79,3 +79,8 @@ Forest is green, desert is yellow, ocean is blue, and so on.
 ## 🧾 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 📌 Credits
+
+https://flows.nodered.org/node/@tomsith/node-red-contrib-minecraft/#configuration
+Minecraft nodes used in this project.
