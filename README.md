@@ -60,7 +60,5 @@ The dashboard shows:
   - Biome name (e.g. crimson forest)
   - Distance (422 blocks)
   - Last scanned time
-LED strip updates based on the closest biome with unique effects and colors.
-
-## 🎨 Example Biome Colors
+LED strip updates based on the closest biome with colors.
 Forest is green, desert is yellow, ocean is blue, and so on.
