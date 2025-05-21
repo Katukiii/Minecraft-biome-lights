@@ -56,7 +56,7 @@ Make sure to donwload the flow. The flow is called 'BiomeLightsFlow'.
 
 Import the BiomeLightsFlow in your NodeRed. 
 
-# IMPORTANT! Change Inject and RCON Node
+#### IMPORTANT! Change Inject and RCON Node
 
 Your username on minecraft need to be inside of these nodes in order for the program to work.
 
