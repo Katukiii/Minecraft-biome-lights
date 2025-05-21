@@ -1,6 +1,6 @@
 # 🌍 Minecraft Biome Distance Dashboard & LED Visualizer
 
-A Node-RED dashboard that visualizes distances to Minecraft biomes in real-time and synchronizes biome proximity with LED strip animations. Designed for RCON-connected Minecraft servers.
+A Node-RED project that visualizes distances to Minecraft biomes in real-time and synchronizes biome proximity with LED strip animations. Designed for RCON-connected Minecraft servers.
 
 ---
 
