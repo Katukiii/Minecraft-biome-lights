@@ -1,0 +1,351 @@
+[
+    {
+        "id": "8bf75f7d17761c6f",
+        "type": "tab",
+        "label": "Biome lights",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "792bd36434d50354",
+        "type": "inject",
+        "z": "8bf75f7d17761c6f",
+        "name": "Find current dimension",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "60",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "data get entity GosDa218 Dimension",
+        "payloadType": "str",
+        "x": 390,
+        "y": 260,
+        "wires": [
+            [
+                "1e50b71f6c9e89f4"
+            ]
+        ]
+    },
+    {
+        "id": "1e50b71f6c9e89f4",
+        "type": "rcon",
+        "z": "8bf75f7d17761c6f",
+        "name": "",
+        "server": "b5838487c0f8b097",
+        "command": "",
+        "x": 580,
+        "y": 260,
+        "wires": [
+            [
+                "be05a1be21377bfb"
+            ]
+        ]
+    },
+    {
+        "id": "be05a1be21377bfb",
+        "type": "function",
+        "z": "8bf75f7d17761c6f",
+        "name": "Check dimension list",
+        "func": "// RCON response: \"GosDa218 has the following entity data: minecraft:overworld\"\nlet raw = msg.payload;\n\nlet dimension = raw.match(/minecraft:(\\w+)/);\nif (!dimension) return null;\n\nmsg.dimension = dimension[1]; // \"overworld\", \"the_nether\", or \"the_end\"\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 260,
+        "wires": [
+            [
+                "5c36fce0c254f425"
+            ]
+        ]
+    },
+    {
+        "id": "5c36fce0c254f425",
+        "type": "switch",
+        "z": "8bf75f7d17761c6f",
+        "name": "If-statements",
+        "property": "dimension",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "overworld",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "the_nether",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "the_end",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 530,
+        "y": 400,
+        "wires": [
+            [
+                "4e34b0d8af8abcbf"
+            ],
+            [
+                "9b48393ba5587740"
+            ],
+            [
+                "b75eee3699b1ee84"
+            ]
+        ]
+    },
+    {
+        "id": "4e34b0d8af8abcbf",
+        "type": "function",
+        "z": "8bf75f7d17761c6f",
+        "name": "Overworld biomes",
+        "func": "let biome = msg.biome;  // set this in the biome function nodes\n\nconst biomes = [\n  \"plains\",\n  \"sunflower_plains\",\n  \"forest\",\n  \"flower_forest\",\n  \"birch_forest\",\n  \"jungle\",\n  \"savanna\",\n  \"dark_forest\",\n  \"taiga\",\n  \"taiga_hills\",\n  \"mountains\",\n  \"mountain_edge\",\n  \"swamp\",\n  \"beach\",\n  \"river\",\n  \"snowy_tundra\",\n  \"mushroom_fields\",\n  \"mushroom_field_shore\",\n  \"ocean\",\n  \"deep_ocean\",\n  \"lukewarm_ocean\",\n  \"cold_ocean\",\n  \"frozen_river\",\n  \"desert\",\n  \"snowy_taiga\",\n  \"warm_ocean\",\n  \"frozen_ocean\",\n];\n\nlet output = biomes.map(biome => {\n  return {\n    payload: `/execute at GosDa218 run locate biome ${biome}`,\n    biome: `${biome}`\n  };\n});\n\nreturn [output];\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 730,
+        "y": 360,
+        "wires": [
+            [
+                "2e8fbe26e63260f4"
+            ]
+        ]
+    },
+    {
+        "id": "9b48393ba5587740",
+        "type": "function",
+        "z": "8bf75f7d17761c6f",
+        "name": "Nether biomes",
+        "func": "let biome = msg.biome;  // set this in the biome function nodes\n\nconst biomes = [\n  \"nether_wastes\",\n  \"soul_sand_valley\",\n  \"crimson_forest\",\n  \"warped_forest\",\n  \"basalt_deltas\",\n];\n\nlet output = biomes.map(biome => {\n    return {\n        payload: `/execute at GosDa218 run locate biome ${biome}`\n    };\n});\n\nreturn [output];\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 400,
+        "wires": [
+            [
+                "2e8fbe26e63260f4"
+            ]
+        ]
+    },
+    {
+        "id": "b75eee3699b1ee84",
+        "type": "function",
+        "z": "8bf75f7d17761c6f",
+        "name": "End biomes",
+        "func": "let biome = msg.biome;  // set this in the biome function nodes\n\nconst biomes = [\n  \"the_end\",\n  //\"end_highlands\",\n  //\"small_end_islands\",\n];\n\nlet output = biomes.map(biome => {\n    return {\n        payload: `/execute at GosDa218 run locate biome ${biome}`\n    };\n});\n\nreturn [output];\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 710,
+        "y": 440,
+        "wires": [
+            [
+                "2e8fbe26e63260f4"
+            ]
+        ]
+    },
+    {
+        "id": "2e8fbe26e63260f4",
+        "type": "delay",
+        "z": "8bf75f7d17761c6f",
+        "name": "1 every 2s",
+        "pauseType": "rate",
+        "timeout": "",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "2",
+        "rateUnits": "second",
+        "randomFirst": "",
+        "randomLast": "",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 950,
+        "y": 400,
+        "wires": [
+            [
+                "5758d9bc37cdca67"
+            ]
+        ]
+    },
+    {
+        "id": "5758d9bc37cdca67",
+        "type": "rcon",
+        "z": "8bf75f7d17761c6f",
+        "name": "",
+        "server": "b5838487c0f8b097",
+        "command": "",
+        "x": 1110,
+        "y": 400,
+        "wires": [
+            [
+                "6dc1d85fa19ac6c3",
+                "22362baa0ab8443a",
+                "35bbf234ed20796e"
+            ]
+        ]
+    },
+    {
+        "id": "6dc1d85fa19ac6c3",
+        "type": "function",
+        "z": "8bf75f7d17761c6f",
+        "name": "Biome to LED Colors",
+        "func": "const biomeColors = {\n    // Overworld biomes\n    'plains': { r: 102, g: 204, b: 0 },    // Light green\n    'sunflower_plains': { r: 170, g: 220, b: 0 }, // Bright yellow-green\n    'forest': { r: 0, g: 128, b: 0 },      // Forest green\n    'flower_forest': { r: 120, g: 180, b: 20 }, // Flowery green\n    'birch_forest': { r: 120, g: 170, b: 95 }, // Light green\n    'dark_forest': { r: 20, g: 100, b: 20 }, // Dark green\n    'desert': { r: 255, g: 223, b: 0 },    // Sand yellow\n    'desert_hills': { r: 200, g: 180, b: 0 }, // Darker sand\n    'beach': { r: 255, g: 240, b: 120 },   // Light sand\n    'stone_shore': { r: 160, g: 160, b: 160 }, // Gray\n    'mountains': { r: 160, g: 160, b: 160 }, // Gray\n    'mountain_edge': { r: 140, g: 140, b: 140 }, // Light gray\n    'jungle': { r: 10, g: 200, b: 10 },    // Vibrant green\n    'jungle_edge': { r: 80, g: 220, b: 80 }, // Lighter jungle green\n    'bamboo_jungle': { r: 40, g: 230, b: 40 }, // Bamboo green\n    'taiga': { r: 0, g: 128, b: 64 },      // Evergreen green\n    'taiga_hills': { r: 20, g: 100, b: 50 }, // Darker evergreen\n    'snowy_taiga': { r: 180, g: 220, b: 220 }, // Snowy green\n    'savanna': { r: 255, g: 180, b: 0 },   // Orange-yellow\n    'savanna_plateau': { r: 255, g: 150, b: 0 }, // Darker orange\n    'swamp': { r: 76, g: 83, b: 42 },      // Murky green\n    'badlands': { r: 255, g: 120, b: 20 }, // Orange-red\n    'wooded_badlands': { r: 220, g: 100, b: 40 }, // Darker orange-red\n    'ocean': { r: 0, g: 80, b: 255 },      // Blue\n    'deep_ocean': { r: 0, g: 40, b: 200 }, // Darker blue\n    'warm_ocean': { r: 60, g: 150, b: 255 }, // Light blue\n    'lukewarm_ocean': { r: 40, g: 120, b: 230 }, // Medium blue\n    'cold_ocean': { r: 0, g: 60, b: 200 }, // Cold blue\n    'frozen_ocean': { r: 160, g: 200, b: 255 }, // Ice blue\n    'river': { r: 0, g: 120, b: 200 },     // River blue\n    'frozen_river': { r: 180, g: 220, b: 255 }, // Frozen blue\n    'snowy_tundra': { r: 200, g: 200, b: 255 }, // Light blue\n    'snowy_mountains': { r: 180, g: 180, b: 230 }, // Blue-gray\n    'mushroom_fields': { r: 200, g: 0, b: 200 }, // Purple\n    'mushroom_field_shore': { r: 170, g: 0, b: 170 }, // Lighter purple\n    \n    // Nether biomes\n    'nether_wastes': { r: 255, g: 0, b: 0 }, // Red\n    'soul_sand_valley': { r: 80, g: 50, b: 120 }, // Soul sand purple-brown\n    'crimson_forest': { r: 220, g: 0, b: 30 }, // Crimson red\n    'warped_forest': { r: 0, g: 200, b: 180 }, // Teal\n    'basalt_deltas': { r: 90, g: 90, b: 90 }, // Dark gray\n    \n    // End biomes\n    'the_end': { r: 128, g: 0, b: 128 },   // Purple\n    'end_highlands': { r: 160, g: 0, b: 160 }, // Lighter purple\n    'small_end_islands': { r: 120, g: 0, b: 120 }, // Darker purple\n    \n    // Default/unknown\n    'unknown': { r: 100, g: 100, b: 100 }  // Gray\n};\n\n// Get the flow context tracker or initialize it\nconst flowContext = flow.get('biomeTracker') || {\n    biomes: {},\n    closestBiome: null,\n    closestDistance: 999999,\n    lastUpdate: Date.now()\n};\n\n// Parse the RCON response\nconst responseText = msg.payload;\n\n// Extract biome name and distance\nlet biomeName = \"unknown\";\nlet distance = 999999;\nlet position = null;\n\nif (typeof responseText === 'string') {\n    // Extract biome name\n    const biomeMatch = responseText.match(/minecraft:(\\w+)/);\n    if (biomeMatch && biomeMatch[1]) {\n        biomeName = biomeMatch[1];\n    }\n    \n    // Extract coordinates and distance\n    const posMatch = responseText.match(/\\[([\\-\\d]+),\\s*([\\-\\d]+),\\s*([\\-\\d]+)\\]\\s*\\(([\\d]+)\\s*blocks\\s*away\\)/);\n    if (posMatch) {\n        position = {\n            x: parseInt(posMatch[1]),\n            y: parseInt(posMatch[2]),\n            z: parseInt(posMatch[3])\n        };\n        distance = parseInt(posMatch[4]);\n    }\n}\n\n// Update the biome tracker\nif (biomeName !== \"unknown\" && distance !== 999999) {\n    flowContext.biomes[biomeName] = {\n        name: biomeName,\n        distance: distance,\n        position: position,\n        lastUpdate: Date.now()\n    };\n}\n\n// Find the closest biome from all tracked biomes\n// Remove stale entries (older than 30 seconds)\nconst staleThreshold = Date.now() - 30000;\nlet closestBiome = null;\nlet closestDistance = 999999;\n\nfor (const [name, biome] of Object.entries(flowContext.biomes)) {\n    // Remove stale entries\n    if (biome.lastUpdate < staleThreshold) {\n        delete flowContext.biomes[name];\n        continue;\n    }\n    \n    // Check if this is closest\n    if (biome.distance < closestDistance) {\n        closestBiome = name;\n        closestDistance = biome.distance;\n    }\n}\n\n// Save back to flow context\nflowContext.closestBiome = closestBiome;\nflowContext.closestDistance = closestDistance;\nflowContext.lastUpdate = Date.now();\nflow.set('biomeTracker', flowContext);\n\n// Create LED colors only for the closest biome\nif (closestBiome) {\n    const baseColor = biomeColors[closestBiome] || biomeColors['unknown'];\n    const distance = closestDistance;\n    \n    // Create array for LED colors (16 LEDs)\n    let ledColors = [];\n    \n    // If biome is close (under 30 blocks), use full brightness\n    if (distance < 30) {\n        // Full brightness for nearby biome\n        for (let i = 0; i < 16; i++) {\n            ledColors.push({\n                r: baseColor.r,\n                g: baseColor.g,\n                b: baseColor.b\n            });\n        }\n        \n        // Add special pattern for very close biomes\n        for (let i = 0; i < 16; i += 2) {\n            ledColors[i] = {\n                r: Math.min(255, Math.floor(baseColor.r * 1.3)),\n                g: Math.min(255, Math.floor(baseColor.g * 1.3)),\n                b: Math.min(255, Math.floor(baseColor.b * 1.3))\n            };\n        }\n    } else {\n        // Calculate dimmed brightness based on distance\n        const distanceFactor = Math.min(1.0, Math.max(0.15, 1 - (distance / 500)));\n        \n        for (let i = 0; i < 16; i++) {\n            ledColors.push({\n                r: Math.floor(baseColor.r * distanceFactor),\n                g: Math.floor(baseColor.g * distanceFactor),\n                b: Math.floor(baseColor.b * distanceFactor)\n            });\n        }\n        \n        // Add direction indicator\n        const halfLength = Math.floor(ledColors.length / 2);\n        const brighterSide = distance % 2 === 0 ? 0 : halfLength;\n        \n        for (let i = brighterSide; i < brighterSide + halfLength; i++) {\n            const brighterFactor = Math.min(distanceFactor * 1.4, 1.0);\n            ledColors[i] = {\n                r: Math.min(255, Math.floor(baseColor.r * brighterFactor)),\n                g: Math.min(255, Math.floor(baseColor.g * brighterFactor)),\n                b: Math.min(255, Math.floor(baseColor.b * brighterFactor))\n            };\n        }\n    }\n    \n    // Show status in Node-RED\n    let statusColor = \"blue\";\n    if (distance < 30) {\n        statusColor = \"green\";\n    } else if (distance < 100) {\n        statusColor = \"yellow\";\n    }\n    \n    node.status({\n        fill: statusColor,\n        shape: \"dot\",\n        text: `${closestBiome} (${distance} blocks)`\n    });\n    \n    // Send to output\n    msg.payload = ledColors;\n    msg.biomeInfo = {\n        name: closestBiome,\n        distance: distance,\n        position: flowContext.biomes[closestBiome].position,\n        allBiomes: Object.keys(flowContext.biomes)\n    };\n} else {\n    // No biomes tracked yet\n    node.status({fill: \"grey\", shape: \"ring\", text: \"No biomes tracked\"});\n    msg.payload = [];\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1320,
+        "y": 400,
+        "wires": [
+            [
+                "a1f1a2ac056dbbd0"
+            ]
+        ]
+    },
+    {
+        "id": "a1f1a2ac056dbbd0",
+        "type": "debug",
+        "z": "8bf75f7d17761c6f",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1520,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "22362baa0ab8443a",
+        "type": "debug",
+        "z": "8bf75f7d17761c6f",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1280,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "35bbf234ed20796e",
+        "type": "function",
+        "z": "8bf75f7d17761c6f",
+        "name": "Parser",
+        "func": "let text = msg.payload;\nlet regex = /The nearest (minecraft:[\\w_]+) is at \\[[^\\]]+\\] \\((\\d+) blocks away\\)/;\nlet match = regex.exec(text);\n\nif (match) {\n    msg.payload = {\n        biome: match[1].replace('minecraft:', ''),\n        distance: parseInt(match[2]),\n    };\n    return msg;\n} else {\n    return null;\n}\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 770,
+        "y": 560,
+        "wires": [
+            [
+                "4ef3c6ddabfa3b3b"
+            ]
+        ]
+    },
+    {
+        "id": "4ef3c6ddabfa3b3b",
+        "type": "function",
+        "z": "8bf75f7d17761c6f",
+        "name": "Update Biome Tables",
+        "func": "// incoming msg.payload = { biome: \"minecraft:desert\", distance: 123 }\nlet data = flow.get(\"biomeTables\") || {};\nconst biome = msg.payload.biome;\nconst distance = msg.payload.distance;\nconst time = new Date().toLocaleTimeString();\n\n// update stored data\ndata[biome] = { biome, distance, time };\nflow.set(\"biomeTables\", data);\n\n// Define biome colors\nconst biomeColors = {\n    desert: \"#f4e2a0\",\n    forest: \"#a6d785\",\n    plains: \"#bff7a1\",\n    jungle: \"#5fd068\",\n    savanna: \"#e4c66f\",\n    taiga: \"#94c0d6\",\n    swamp: \"#6fbb84\",\n    snowy_tundra: \"#e0f7ff\",\n    ice_spikes: \"#d0eaf0\",\n    mushroom_fields: \"#c49fff\",\n    nether_wastes: \"#d05c5c\",\n    crimson_forest: \"#cc334d\",\n    warped_forest: \"#399b9f\",\n    basalt_deltas: \"#999999\",\n    soul_sand_valley: \"#c9b79c\"\n    // add more if needed\n};\n\n// Sort data by distance\nlet sorted = Object.values(data).sort((a, b) => a.distance - b.distance);\n\n// Build the table\nlet html = `<table style='width:100%; border-collapse: collapse;'>\n    <thead>\n        <tr style='background-color: #e0e0e0;'>\n            <th style='padding: 8px; text-align: left;'>Biome</th>\n            <th style='padding: 8px; text-align: left;'>Distance</th>\n            <th style='padding: 8px; text-align: left;'>Last Checked</th>\n        </tr>\n    </thead>\n    <tbody>`;\n\nsorted.forEach(entry => {\n    const color = biomeColors[entry.biome] || \"#ffffff\";\n    html += `\n        <tr style='background-color:${color};'>\n            <td style='padding: 8px;'>${entry.biome}</td>\n            <td style='padding: 8px;'>${entry.distance} blocks</td>\n            <td style='padding: 8px;'>${entry.time}</td>\n        </tr>`;\n});\n\nhtml += `</tbody></table>`;\n\nmsg.payload = html;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1000,
+        "y": 560,
+        "wires": [
+            [
+                "5d0afb963974705a"
+            ]
+        ]
+    },
+    {
+        "id": "5d0afb963974705a",
+        "type": "ui_template",
+        "z": "8bf75f7d17761c6f",
+        "group": "biomeDashboard",
+        "name": "Biome Tables",
+        "order": 1,
+        "width": 12,
+        "height": 20,
+        "format": "<div ng-bind-html=\"msg.payload\"></div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1220,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b5838487c0f8b097",
+        "type": "serverconfig",
+        "host": "tome.lu",
+        "rconPort": 25575,
+        "rconPassword": "teinf"
+    },
+    {
+        "id": "biomeDashboard",
+        "type": "ui_group",
+        "name": "Biome Distance Info",
+        "tab": "biomeTab",
+        "order": 1,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "biomeTab",
+        "type": "ui_tab",
+        "name": "Minecraft",
+        "icon": "dashboard",
+        "order": 1
+    }
+]
