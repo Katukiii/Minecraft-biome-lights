@@ -66,6 +66,6 @@ Forest is green, desert is yellow, ocean is blue, and so on.
 
 ---
 
-## License
+## 🧾 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
