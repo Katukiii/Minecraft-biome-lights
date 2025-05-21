@@ -43,7 +43,7 @@ Make sure the dashboard and minecraft nodes are installed in Node-RED:
 ```bash
 cd ~/.node-red
 npm install node-red-dashboard
-npm install // tom mc
+npm install @tomsith/node-red-contrib-minecraft
 ```
 
 ### 2. Install the required flow
@@ -56,7 +56,7 @@ Make sure to donwload the flow. The flow is called 'BiomeLightsFlow'.
 
 Import the BiomeLightsFlow in your NodeRed. 
 
-## Change Inject and RCON Node
+# IMPORTANT! Change Inject and RCON Node
 
 Your username on minecraft need to be inside of these nodes in order for the program to work.
 
