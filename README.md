@@ -42,5 +42,12 @@ Make sure the dashboard nodes are installed in Node-RED:
 ```bash
 cd ~/.node-red
 npm install node-red-dashboard
+```
+
+### 2. Install the required flow
+
+Make sure to donwload the flow. The flow is called 'BiomeLightsFlow'.
+![{7E23CCC2-8958-48E2-8C47-D40DCD002F7F}](https://github.com/user-attachments/assets/93a833b9-51b5-4356-9cdf-96b6c7b7148d)
+
 
 
