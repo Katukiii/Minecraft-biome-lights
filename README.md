@@ -80,6 +80,8 @@ Forest is green, desert is yellow, ocean is blue, and so on.
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
+---
+
 ## 📌 Credits
 
 https://flows.nodered.org/node/@tomsith/node-red-contrib-minecraft/#configuration
