@@ -50,8 +50,9 @@ Make sure to donwload the flow. The flow is called 'BiomeLightsFlow'.
 
 ![{7E23CCC2-8958-48E2-8C47-D40DCD002F7F}](https://github.com/user-attachments/assets/93a833b9-51b5-4356-9cdf-96b6c7b7148d)
 
+---
 
-### 🧠 How It Works
+## 🧠 How It Works
 
 The server sends a message like:
 The nearest minecraft:crimson_forest is at [123, 64, 789] (422 blocks away).
