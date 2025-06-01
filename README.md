@@ -78,7 +78,7 @@ Forest is green, desert is yellow, ocean is blue, and so on.
 
 #### IMPORTANT!
 
-This project ONLY works with an LED strip consisting of 16 Lights EXCEPT if you change the 'Biome to LED Lights' nodes' amount to your desired amount. (line 146 in code).
+This project ONLY works with an LED strip consisting of 16 Lights EXCEPT if you change the 'Biome to LED Lights' nodes' amount to your desired amount (line 146 inside the code).
 
 ---
 
