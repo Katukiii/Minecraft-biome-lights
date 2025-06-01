@@ -67,7 +67,7 @@ Note that you can customise which biomes the program can detect in the Overworld
 
 The server sends a message like:
 The nearest minecraft:crimson_forest is at [123, 64, 789] (422 blocks away).
-Node-RED parses the biome name, distance, and attaches the dimension (nether/overworld/end).
+Node-RED parses the biome name and distance.
 The dashboard shows:
   - Biome name (e.g. crimson forest)
   - Distance (422 blocks)
