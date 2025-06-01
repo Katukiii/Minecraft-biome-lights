@@ -29,9 +29,8 @@ A Node-RED project that visualizes distances to Minecraft biomes in real-time an
 - Minecraft Java Edition server with **RCON** enabled
 - [Node-RED](https://nodered.org/) installed and running
 - Node-RED dashboard nodes installed
-- Node-RED minecraft nodes installed (see setup instructions for the download command)
-- Optional: LED strip controlled via MQTT
-- Biome scan commands (e.g. `/locate biome`) triggered via Node-RED inject or automation
+- Node-RED minecraft nodes installed (see setup instructions for the download command OR do manually in NodeRed (@tomsith/node-red-contrib-minecraft))
+- LED strip controlled via MQTT (see flow for MQTT node)
 
 ---
 
@@ -57,10 +56,9 @@ Make sure to donwload the flow. The flow is called 'BiomeLightsFlow'.
 
 Import the BiomeLightsFlow in your NodeRed. 
 
-#### IMPORTANT! Change Inject and RCON Node
+#### IMPORTANT! Change Inject, RCON and MQTT node
 
-Your username on minecraft need to be inside of these nodes in order for the program to work.
-
+Your username on minecraft need to be inside of the inject node and your server should be in the RCON node. Your MQTT server should be set to your MQTT server aswell.
 ---
 
 ## 🧠 How It Works
