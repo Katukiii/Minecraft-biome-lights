@@ -30,7 +30,7 @@ A Node-RED project that visualizes distances to Minecraft biomes in real-time an
 - [Node-RED](https://nodered.org/) installed and running
 - Node-RED dashboard nodes installed
 - Node-RED minecraft nodes installed (see setup instructions for the download command OR do manually in NodeRed (@tomsith/node-red-contrib-minecraft))
-- LED strip controlled via MQTT (see flow for MQTT node)
+- 16 Lights LED strip controlled via MQTT (see flow for MQTT node)
 
 ---
 
@@ -75,6 +75,10 @@ The dashboard shows:
 
 LED strip updates based on the closest biome with colors.
 Forest is green, desert is yellow, ocean is blue, and so on.
+
+#### IMPORTANT!
+
+This project ONLY works with an LED strip consisting of 16 Lights EXCEPT if you change the 'Biome to LED Lights' nodes' amount to your desired amount. (line 146 in code).
 
 ---
 
