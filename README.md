@@ -7,10 +7,10 @@ A Node-RED project that visualizes distances to Minecraft biomes in real-time an
 ## 🧭 Features
 
 - 📊 **Dashboard Display**  
-  Interactive UI with biome-specific distance data, updated in real-time per dimension.
+  Interactive UI with biome-specific distance data, updated in real-time.
 
 - 🎨 **Biome-Themed LED Strip**  
-  LED strip reacts dynamically to the nearest biome, using colors and effects unique to each environment.
+  LED strip reacts dynamically to the nearest biome, using colors unique to each environment.
   
 - 🧹 **Clean and Sorted UI**  
   Biomes are listed in order of distance for a clearer view of proximity priorities.
