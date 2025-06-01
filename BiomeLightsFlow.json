@@ -11,7 +11,7 @@
         "id": "792bd36434d50354",
         "type": "inject",
         "z": "8bf75f7d17761c6f",
-        "name": "Find current dimension",
+        "name": "Find current dimension (switch to your name!!)",
         "props": [
             {
                 "p": "payload"
@@ -24,7 +24,7 @@
         "topic": "",
         "payload": "data get entity GosDa218 Dimension",
         "payloadType": "str",
-        "x": 390,
+        "x": 320,
         "y": 260,
         "wires": [
             [
@@ -36,10 +36,10 @@
         "id": "1e50b71f6c9e89f4",
         "type": "rcon",
         "z": "8bf75f7d17761c6f",
-        "name": "",
+        "name": "RCON to your server",
         "server": "b5838487c0f8b097",
         "command": "",
-        "x": 580,
+        "x": 630,
         "y": 260,
         "wires": [
             [
@@ -59,7 +59,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 760,
+        "x": 880,
         "y": 260,
         "wires": [
             [
@@ -197,10 +197,10 @@
         "id": "5758d9bc37cdca67",
         "type": "rcon",
         "z": "8bf75f7d17761c6f",
-        "name": "",
+        "name": "RCON to your server",
         "server": "b5838487c0f8b097",
         "command": "",
-        "x": 1110,
+        "x": 1160,
         "y": 400,
         "wires": [
             [
@@ -222,11 +222,12 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1320,
+        "x": 1440,
         "y": 400,
         "wires": [
             [
-                "a1f1a2ac056dbbd0"
+                "a1f1a2ac056dbbd0",
+                "c8f12c41a24bcb9d"
             ]
         ]
     },
@@ -325,10 +326,28 @@
         ]
     },
     {
+        "id": "c8f12c41a24bcb9d",
+        "type": "mqtt out",
+        "z": "8bf75f7d17761c6f",
+        "name": "MQTT Server for LED color switching",
+        "topic": "led",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "63e4fe4d26a852e0",
+        "x": 1750,
+        "y": 400,
+        "wires": []
+    },
+    {
         "id": "b5838487c0f8b097",
         "type": "serverconfig",
         "host": "tome.lu",
-        "rconPort": 25575,
+        "rconPort": "25575",
         "rconPassword": "teinf"
     },
     {
@@ -340,6 +359,37 @@
         "disp": true,
         "width": "12",
         "collapse": false
+    },
+    {
+        "id": "63e4fe4d26a852e0",
+        "type": "mqtt-broker",
+        "name": "Tome.lu",
+        "broker": "tome.lu",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
     },
     {
         "id": "biomeTab",
