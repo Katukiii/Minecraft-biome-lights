@@ -19,7 +19,8 @@ A Node-RED project that visualizes distances to Minecraft biomes in real-time an
 
 ## 💡 Example Output
 
-![Dashboard Example](example-dashboard.png)
+![eeeoeoeo](https://github.com/user-attachments/assets/af344263-2b68-445a-8a7c-304e8d6be85e)
+
 
 ---
 
