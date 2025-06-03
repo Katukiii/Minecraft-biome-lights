@@ -58,7 +58,7 @@ Import the BiomeLightsFlow in your NodeRed.
 
 #### IMPORTANT! Change Inject, RCON and MQTT node
 
-Your username on minecraft need to be inside of the inject node and your server should be in the RCON node. Your MQTT server should be set to your MQTT server aswell.
+Your username on minecraft needs to be inside of the inject node and your server should be in the RCON node. Your MQTT server should be set to your MQTT server aswell.
 Note that you can customise which biomes the program can detect in the Overworld, Nether and End biomes nodes. Just put // before the biome name in order to remove that biomes' name from scanning.
 
 ---
@@ -78,7 +78,7 @@ Forest is green, desert is yellow, ocean is blue, and so on.
 
 #### IMPORTANT!
 
-This project ONLY works with an LED strip consisting of 16 Lights EXCEPT if you change the 'Biome to LED Lights' nodes' amount to your desired amount (line 146 inside the code).
+This project ONLY works with an LED strip consisting of 16 Lights EXCEPT if you change the 'Biome to LED Lights' nodes' amount to your desired amount (line 146 inside the function node code).
 
 ---
 
